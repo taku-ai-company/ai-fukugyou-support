@@ -37,7 +37,10 @@
     .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
     .section { padding: 80px 0; position: relative; }
     .section-label {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 16px;
       padding: 6px 12px;
       border-radius: 4px;
@@ -333,13 +336,8 @@
           ChatGPTに「副業 始め方」と聞くより、ずっと具体的。
         </p>
 
-        <!-- ヒーローイメージ: 画像が用意できたら <img> に差し替え -->
-        <div class="hero-image">
-          <div class="hero-image--placeholder">
-            <!-- TODO: 画像を差し替え → <img src="images/hero.webp" alt="AIが副業スタートキットを生成するイメージ" width="960" height="540"> -->
-            ヒーロー画像は任意です。シンプルな人物イラストか、成果物イメージだけでも十分です。
-          </div>
-        </div>
+        <!-- ヒーローイメージ: 画像が用意できたら以下を有効化する -->
+        <!-- <div class="hero-image"><img src="images/hero.webp" alt="AIが副業スタートキットを生成するイメージ" width="960" height="540"></div> -->
 
         <a href="#register" class="cta-btn">先行登録する（無料）</a>
         <p class="hero-note">まずはメール登録のみ。派手さより、わかりやすさを優先しています。</p>
