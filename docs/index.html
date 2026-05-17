@@ -11,26 +11,35 @@
       --card: #1a1d2e;
       --border: #2d3150;
       --accent: #f1c40f;
+      --accent2: #4ade80;
       --text: #e8eaf0;
       --sub: #8892b0;
       --link: #64b5f6;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'Hiragino Sans', 'Meiryo', sans-serif; font-size: 15px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Hiragino Sans', 'Meiryo', sans-serif; font-size: 15px; line-height: 1.6; }
     header { background: var(--card); border-bottom: 2px solid var(--accent); padding: 20px 24px; }
     header h1 { font-size: 1.4em; color: var(--accent); }
-    header p { color: var(--sub); font-size: 0.85em; margin-top: 4px; }
+    header .purpose { color: var(--sub); font-size: 0.82em; margin-top: 6px; }
+    .purpose strong { color: var(--text); }
     .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
     .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 28px; }
     .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
     .kpi-card .label { font-size: 0.78em; color: var(--sub); margin-bottom: 6px; }
     .kpi-card .value { font-size: 1.9em; font-weight: bold; color: var(--accent); }
+    .kpi-card .sub-value { font-size: 0.78em; color: var(--sub); margin-top: 4px; }
+    .kpi-card.green .value { color: var(--accent2); }
+    .section-title { font-size: 0.8em; color: var(--sub); font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; margin-top: 32px; border-left: 3px solid var(--accent); padding-left: 8px; }
     .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 28px; }
     @media (max-width: 650px) { .charts-grid { grid-template-columns: 1fr; } }
     .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-    .chart-card h2 { font-size: 0.9em; color: var(--sub); margin-bottom: 14px; }
+    .chart-card h2 { font-size: 0.95em; color: var(--text); margin-bottom: 4px; }
+    .chart-card .chart-sub { font-size: 0.78em; color: var(--sub); margin-bottom: 12px; }
+    .insight-box { background: rgba(241,196,15,0.07); border: 1px solid rgba(241,196,15,0.25); border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.82em; color: var(--text); }
+    .insight-box .insight-label { color: var(--accent); font-weight: bold; font-size: 0.9em; margin-bottom: 4px; }
     .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-    .table-card h2 { font-size: 1em; color: var(--text); margin-bottom: 14px; }
+    .table-card h2 { font-size: 1em; color: var(--text); margin-bottom: 4px; }
+    .table-card .table-sub { font-size: 0.78em; color: var(--sub); margin-bottom: 14px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
     th { color: var(--sub); font-weight: normal; padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
     td { padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
@@ -43,136 +52,237 @@
     td.author { color: var(--sub); font-size: 0.85em; }
     .kw-badge { display: inline-block; background: rgba(241,196,15,0.12); color: var(--accent); border: 1px solid rgba(241,196,15,0.3); border-radius: 12px; padding: 2px 8px; font-size: 0.78em; white-space: nowrap; }
     footer { text-align: center; padding: 24px; color: var(--sub); font-size: 0.8em; }
-    .keywords-row { margin-bottom: 20px; }
-    .updated { color: var(--sub); font-size: 0.82em; margin-top: 8px; }
+    .keywords-row { margin-bottom: 8px; }
+    .updated { color: var(--sub); font-size: 0.82em; margin-top: 6px; }
   </style>
 </head>
 <body>
   <header>
     <h1>📊 note 売れ筋ダッシュボード</h1>
-    <p>副業ジャンルの note 有料記事トレンドを可視化 — <strong>フクラボ</strong></p>
+    <p class="purpose">
+      副業ジャンルのnote有料記事データ — フクラボ<br>
+      <strong>何を書くか・いくらで出すか・どんなタイトルにするか</strong>を数字で判断するためのツールです。
+    </p>
   </header>
   <div class="container">
 
-    <div class="keywords-row"><span class="kw-badge">副業 初心者</span> <span class="kw-badge">note 稼ぐ</span> <span class="kw-badge">副業 ライティング</span> <span class="kw-badge">ChatGPT 副業</span> <span class="kw-badge">note 有料記事</span></div>
-    <p class="updated">最終更新: 2026-05-17 / 有料記事 23 件を分析</p>
+    <div class="keywords-row" style="margin-top:16px;"><span class="kw-badge">副業 初心者</span> <span class="kw-badge">副業 サラリーマン</span> <span class="kw-badge">副業 始め方</span> <span class="kw-badge">在宅 副業</span> <span class="kw-badge">副業 月5万</span> <span class="kw-badge">note 稼ぐ</span> <span class="kw-badge">note 有料記事</span> <span class="kw-badge">note コンテンツ販売</span> <span class="kw-badge">note マネタイズ</span> <span class="kw-badge">note 書き方</span> <span class="kw-badge">ChatGPT 副業</span> <span class="kw-badge">AI 副業</span> <span class="kw-badge">副業 ライティング</span> <span class="kw-badge">Kindle 副業</span> <span class="kw-badge">フリーランス 副業</span></div>
+    <p class="updated">最終更新: 2026-05-17 / 有料記事 242 件を分析</p>
 
-    <div class="kpi-grid" style="margin-top:16px;">
-      <div class="kpi-card"><div class="label">有料記事数</div><div class="value">23</div></div>
-      <div class="kpi-card"><div class="label">平均価格</div><div class="value">¥8,218</div></div>
-      <div class="kpi-card"><div class="label">平均スキ数</div><div class="value">276.9</div></div>
-      <div class="kpi-card"><div class="label">最大スキ数</div><div class="value">1,065</div></div>
+    <div class="section-title" style="margin-top:20px;">サマリー</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="label">分析した有料記事数</div>
+        <div class="value">242</div>
+        <div class="sub-value">副業関連15キーワード</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="label">スキ100超えの記事数</div>
+        <div class="value">101</div>
+        <div class="sub-value">全体の 41.7%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">最もスキを集める価格帯</div>
+        <div class="value" style="font-size:1.3em;">1001円〜</div>
+        <div class="sub-value">平均 229 スキ</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">最大スキ数</div>
+        <div class="value">1,793</div>
+        <div class="sub-value">平均 141.1</div>
+      </div>
     </div>
 
+    <div class="section-title">値付けの参考 — 価格帯別 平均スキ数</div>
+    <div class="chart-card" style="margin-bottom:18px;">
+      <h2>💰 どの価格帯が最もエンゲージメントを取れているか</h2>
+      <p class="chart-sub">「いくらで売るか」を決めるためのデータ。棒グラフが高いほど、その価格帯の記事が平均的に多くのスキを集めています。</p>
+      <canvas id="priceEngChart" height="140"></canvas>
+      <div class="insight-box">
+        <div class="insight-label">💡 Insight</div>
+        1001円〜の記事が平均 229 スキと最も高く、他の価格帯の平均より際立っています。
+      </div>
+    </div>
+
+    <div class="section-title">タイトル設計の参考 — 高スキ記事の頻出ワード</div>
     <div class="charts-grid">
       <div class="chart-card">
-        <h2>📦 価格帯分布</h2>
-        <canvas id="priceChart" height="220"></canvas>
+        <h2>🔤 スキ100超え記事のタイトル頻出ワード</h2>
+        <p class="chart-sub">「何をタイトルに入れるか」を決めるためのデータ。反応を集めた記事のタイトルで使われている言葉の登場回数です。</p>
+        <canvas id="titleWordsChart" height="260"></canvas>
+        <div class="insight-box">
+          <div class="insight-label">💡 Insight</div>
+          「殿堂入り記事」「メンバーシップ」「AI活用」などが頻出。スキ100超えの記事タイトルで特に使われています。
+        </div>
       </div>
       <div class="chart-card">
-        <h2>❤️ キーワード別 平均スキ数</h2>
-        <canvas id="kwChart" height="220"></canvas>
+        <h2>📦 価格帯の件数分布（参考）</h2>
+        <p class="chart-sub">副業ジャンルの有料記事が実際にどの価格帯に集中しているかの件数分布です。</p>
+        <canvas id="priceDistChart" height="260"></canvas>
       </div>
     </div>
 
+    <div class="section-title">売れ筋ランキング — スキ数TOP20記事</div>
     <div class="table-card">
-      <h2>🏆 スキ数TOP10 有料記事</h2>
+      <h2>🏆 スキ数上位 20記事</h2>
+      <p class="table-sub">実際に反応を集めている記事です。タイトル・価格・ジャンルを参考にしてください。</p>
       <table>
         <thead><tr>
-          <th>#</th><th>タイトル</th><th>価格</th><th>スキ</th><th>著者</th><th>キーワード</th>
+          <th>#</th><th>タイトル</th><th>価格</th><th>スキ</th><th>著者</th>
         </tr></thead>
         <tbody>
         <tr>
           <td class="rank">1</td>
-          <td class="title"><a href="https://note.com/glad_auklet4142/n/nefc49e007f47" target="_blank" rel="noopener">【殿堂入り記事】【有料記事に「500円」をつける手が震えるあなたへ】貿易商12年の私が教える、「売ることが怖い・苦手」の...</a></td>
-          <td class="price">¥2,980</td>
-          <td class="likes">❤️ 1,065</td>
-          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
-          <td class="kw"><span class="kw-badge">副業 ライティング</span></td>
+          <td class="title"><a href="https://note.com/majin_108/n/n28cebe38881d" target="_blank" rel="noopener">【無料】NotebookLMスライドから「音声&字幕付き動画」が作れる"プロンプト"</a></td>
+          <td class="price">無料</td>
+          <td class="likes">❤️ 1,793</td>
+          <td class="author">まじん</td>
         </tr>
         <tr>
           <td class="rank">2</td>
-          <td class="title"><a href="https://note.com/tosshutsu_m/n/nb52ee2d77df7" target="_blank" rel="noopener">インフルエンサーと呼ばれたオンナ突出マイノリティまなつ徹底解剖！うまくいくマインドセットと99日で3000人のフォロワー...</a></td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/nefc49e007f47" target="_blank" rel="noopener">【殿堂入り記事】【有料記事に「500円」をつける手が震えるあなたへ】貿易商12年の私が教える、「売ることが怖い…</a></td>
           <td class="price">¥2,980</td>
-          <td class="likes">❤️ 793</td>
-          <td class="author">まなつ/突出マイノリティ列伝</td>
-          <td class="kw"><span class="kw-badge">副業 初心者</span></td>
+          <td class="likes">❤️ 1,065</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
         </tr>
         <tr>
           <td class="rank">3</td>
-          <td class="title"><a href="https://note.com/glad_auklet4142/n/ne8684f28c85d" target="_blank" rel="noopener">【殿堂入り記事】【起業や独立したいなら「できないこと」を勉強するな】英語ができない貿易商が12年生き残れた理由。語学力ゼ...</a></td>
+          <td class="title"><a href="https://note.com/tosshutsu_m/n/nb52ee2d77df7" target="_blank" rel="noopener">インフルエンサーと呼ばれたオンナ突出マイノリティまなつ徹底解剖！うまくいくマインドセットと99日で3000人の…</a></td>
           <td class="price">¥2,980</td>
-          <td class="likes">❤️ 644</td>
-          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
-          <td class="kw"><span class="kw-badge">ChatGPT 副業</span></td>
+          <td class="likes">❤️ 795</td>
+          <td class="author">まなつ/突出マイノリティ列伝</td>
         </tr>
         <tr>
           <td class="rank">4</td>
-          <td class="title"><a href="https://note.com/glad_auklet4142/n/n59ec9c823862" target="_blank" rel="noopener">【殿堂入り記事】「AIを使って、noteで稼ぎたい」初心者が陥るファンマーケティングの罠友達であってATMじゃない。Op...</a></td>
-          <td class="price">¥2,980</td>
-          <td class="likes">❤️ 485</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n672470a3e657" target="_blank" rel="noopener">【殿堂入り記事】【スキ200個もらった夜に、胃が冷えた】「共感される人」が永遠に売れない脳科学的な理由。あなた…</a></td>
+          <td class="price">¥7,980</td>
+          <td class="likes">❤️ 793</td>
           <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
-          <td class="kw"><span class="kw-badge">副業 初心者</span></td>
         </tr>
         <tr>
           <td class="rank">5</td>
-          <td class="title"><a href="https://note.com/good_toad/n/n22b0b16c20eb" target="_blank" rel="noopener">【副業初心者でも年1000万円モデル】ClaudeCode×AI美女インフルエンサーで海外収益化Onlyfuns・Red...</a></td>
-          <td class="price">¥3,180</td>
-          <td class="likes">❤️ 393</td>
-          <td class="author">んこ</td>
-          <td class="kw"><span class="kw-badge">副業 初心者</span></td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n2c063a2e415f" target="_blank" rel="noopener">【殿堂入り記事】月商1000万でも「毎朝起きるのが怖い」と彼は言った「"スキ"が脳を壊す科学的メカニズム」——…</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 728</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
         </tr>
         <tr>
           <td class="rank">6</td>
-          <td class="title"><a href="https://note.com/glad_auklet4142/n/n2eb8e003e796" target="_blank" rel="noopener">【殿堂入り記事】「10日で月収100万」という20年来の嘘。時間を溶かし続ける人の末路——実績を「残し続ける」ことだけが...</a></td>
-          <td class="price">¥7,980</td>
-          <td class="likes">❤️ 346</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n6c327e935ef1" target="_blank" rel="noopener">【殿堂入り記事・6万フォロワーが一夜で消滅】ひな姫氏のnote垢BANは、その最初の足音だったのか？note「…</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 699</td>
           <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
-          <td class="kw"><span class="kw-badge">副業 ライティング</span></td>
         </tr>
         <tr>
           <td class="rank">7</td>
-          <td class="title"><a href="https://note.com/testosterone/n/na46a21d1f47a" target="_blank" rel="noopener">自分、noteで飯食っていきます！</a></td>
-          <td class="price">¥1,000</td>
-          <td class="likes">❤️ 312</td>
-          <td class="author">Testosterone</td>
-          <td class="kw"><span class="kw-badge">note 稼ぐ</span></td>
+          <td class="title"><a href="https://note.com/neon_ai/n/n6c8dff919946" target="_blank" rel="noopener">労働は今日で終わりにしろ。Threads×note×AIツール開発で「寝てても口座残高が増え続ける」自動化の極…</a></td>
+          <td class="price">¥5,980</td>
+          <td class="likes">❤️ 648</td>
+          <td class="author">ねおん@AIで３億稼いだ人</td>
         </tr>
         <tr>
           <td class="rank">8</td>
-          <td class="title"><a href="https://note.com/bright_snake/n/nb76d15724812" target="_blank" rel="noopener">【X運用×note集客】フォロワー300人でも有料記事がポンポン売れる「濃いファン化」戦略</a></td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/ne8684f28c85d" target="_blank" rel="noopener">【殿堂入り記事】【起業や独立したいなら「できないこと」を勉強するな】英語ができない貿易商が12年生き残れた理由…</a></td>
           <td class="price">¥2,980</td>
-          <td class="likes">❤️ 312</td>
-          <td class="author">ずる賢い副業</td>
-          <td class="kw"><span class="kw-badge">note 有料記事</span></td>
+          <td class="likes">❤️ 644</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
         </tr>
         <tr>
           <td class="rank">9</td>
-          <td class="title"><a href="https://note.com/happyaroma369/n/n9b0ff4d8f535" target="_blank" rel="noopener">【実録】note開設月に初収益！知識ゼロから月1万円を稼ぐためのnoteロードマップ🗺️</a></td>
-          <td class="price">¥3,980</td>
-          <td class="likes">❤️ 297</td>
-          <td class="author">みほ魔法💞⛩美保神社⛩</td>
-          <td class="kw"><span class="kw-badge">note 稼ぐ</span></td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n59ec9c823862" target="_blank" rel="noopener">【殿堂入り記事】「AIを使って、noteで稼ぎたい」初心者が陥るファンマーケティングの罠友達であってATMじゃ…</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 485</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
         </tr>
         <tr>
           <td class="rank">10</td>
-          <td class="title"><a href="https://note.com/glad_auklet4142/n/n7f387b4f62d5" target="_blank" rel="noopener">【殿堂入り記事】「もう書きたくない」と思った日の記事が、スキ951になった——愚痴と発信の境界線は"最後の2行"にある ...</a></td>
-          <td class="price">¥7,980</td>
-          <td class="likes">❤️ 233</td>
+          <td class="title"><a href="https://note.com/hirakawa_noter/n/nca2425c1ec11" target="_blank" rel="noopener">【保存版】1記事の有料noteから3億円以上収益化した方法まとめ【有料noteの歩き方】</a></td>
+          <td class="price">¥55,000</td>
+          <td class="likes">❤️ 455</td>
+          <td class="author">ひらかわ | 1記事noteの人</td>
+        </tr>
+        <tr>
+          <td class="rank">11</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n0e4402850ff4" target="_blank" rel="noopener">【殿堂入り記事】「好きなことで生きていく」の残酷な罠、嘘ではないが半分嘘。独立12年のリアル趣味とプロを分ける…</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 426</td>
           <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
-          <td class="kw"><span class="kw-badge">副業 ライティング</span></td>
+        </tr>
+        <tr>
+          <td class="rank">12</td>
+          <td class="title"><a href="https://note.com/shirono_aru/n/nee542cd0a178" target="_blank" rel="noopener">noteを不労所得にする方法。初心者でも売れ続ける裏戦略と収益データを初公開！【有料マガジン限定】</a></td>
+          <td class="price">無料</td>
+          <td class="likes">❤️ 414</td>
+          <td class="author">しろのある</td>
+        </tr>
+        <tr>
+          <td class="rank">13</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n7d80541d193e" target="_blank" rel="noopener">【殿堂入り記事】年商200億の会長から私が盗んだ「4つの思考の型」月額980円のメンバーシップを10倍の価値に…</a></td>
+          <td class="price">¥7,980</td>
+          <td class="likes">❤️ 406</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
+        </tr>
+        <tr>
+          <td class="rank">14</td>
+          <td class="title"><a href="https://note.com/jiraygyo/n/nf00b167468aa" target="_blank" rel="noopener">「オタク迫害史観」というどう考えても捏造されているオタクたちへの違和感</a></td>
+          <td class="price">¥100</td>
+          <td class="likes">❤️ 401</td>
+          <td class="author">地雷魚</td>
+        </tr>
+        <tr>
+          <td class="rank">15</td>
+          <td class="title"><a href="https://note.com/good_toad/n/n22b0b16c20eb" target="_blank" rel="noopener">【副業初心者でも年1000万円モデル】ClaudeCode×AI美女インフルエンサーで海外収益化Onlyfun…</a></td>
+          <td class="price">¥3,180</td>
+          <td class="likes">❤️ 393</td>
+          <td class="author">んこ</td>
+        </tr>
+        <tr>
+          <td class="rank">16</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n0ba8e8d2c1dd" target="_blank" rel="noopener">【計64P,コミックエッセイ・生成AI漫画版】【AIが工場に足を生やした夜】Nvidiaの「フィジカルAI」が…</a></td>
+          <td class="price">¥4,980</td>
+          <td class="likes">❤️ 392</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
+        </tr>
+        <tr>
+          <td class="rank">17</td>
+          <td class="title"><a href="https://note.com/ozu_bone/n/n61f1da1341da" target="_blank" rel="noopener">【SNSなし】noteで実績0から月5万を目指す全記録。グレードアップする「成長型」攻略本</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 363</td>
+          <td class="author">パンプくん｜SNSなし・実績0から月5万のロードマップを伝える人@フォロバ100</td>
+        </tr>
+        <tr>
+          <td class="rank">18</td>
+          <td class="title"><a href="https://note.com/maji_yava/n/n9d8863de73ee" target="_blank" rel="noopener">Grok AI動画×n8nで月100万円も夢じゃない！完全自動化X連作投稿からFantia/Patreon収益…</a></td>
+          <td class="price">¥2,880</td>
+          <td class="likes">❤️ 357</td>
+          <td class="author">あだるん</td>
+        </tr>
+        <tr>
+          <td class="rank">19</td>
+          <td class="title"><a href="https://note.com/clean_bears/n/n4039ffd5a59f" target="_blank" rel="noopener">【2026年最新副業】AI美女×MyFansで月100万円を積み上げる現実的ロードマップ 顔出し不要・初心者O…</a></td>
+          <td class="price">¥2,980</td>
+          <td class="likes">❤️ 356</td>
+          <td class="author">鈴木田吾作</td>
+        </tr>
+        <tr>
+          <td class="rank">20</td>
+          <td class="title"><a href="https://note.com/glad_auklet4142/n/n2eb8e003e796" target="_blank" rel="noopener">【殿堂入り記事】「10日で月収100万」という20年来の嘘。時間を溶かし続ける人の末路——実績を「残し続ける」…</a></td>
+          <td class="price">¥7,980</td>
+          <td class="likes">❤️ 346</td>
+          <td class="author">ポス鳥（ビジネス＆投資NEWS解説）おそらく日本で１番「事業の失敗例を載せているnoteアカウント」</td>
         </tr></tbody>
       </table>
     </div>
 
   </div>
   <footer>
-    フクラボ — AI×副業マガジン / <a href="https://note.com/ai_hukugyo_lab" target="_blank" style="color:var(--link)">note</a>
+    フクラボ — AI×副業マガジン /
+    <a href="https://note.com/ai_hukugyo_lab" target="_blank" style="color:var(--link)">note</a>
     / データは note 公開検索 API より取得（週次更新）
   </footer>
 
   <script>
-    const chartDefaults = {
+    const base = {
       plugins: { legend: { display: false } },
       scales: {
         x: { ticks: { color: '#8892b0' }, grid: { color: 'rgba(255,255,255,0.05)' } },
@@ -180,22 +290,47 @@
       }
     };
 
-    new Chart(document.getElementById('priceChart'), {
+    // 価格帯×平均スキ数
+    new Chart(document.getElementById('priceEngChart'), {
       type: 'bar',
       data: {
         labels: ["〜100円", "101〜300円", "301〜500円", "501〜1000円", "1001円〜"],
-        datasets: [{ data: [4, 3, 0, 2, 14], backgroundColor: 'rgba(241,196,15,0.7)', borderColor: '#f1c40f', borderWidth: 1 }]
+        datasets: [{
+          data: [118.6, 103.6, 32.6, 93.9, 229.1],
+          backgroundColor: ["〜100円", "101〜300円", "301〜500円", "501〜1000円", "1001円〜"].map((_, i) => {
+            const vals = [118.6, 103.6, 32.6, 93.9, 229.1];
+            const max = Math.max(...vals);
+            return vals[i] === max ? 'rgba(74,222,128,0.8)' : 'rgba(241,196,15,0.5)';
+          }),
+          borderColor: ["〜100円", "101〜300円", "301〜500円", "501〜1000円", "1001円〜"].map((_, i) => {
+            const vals = [118.6, 103.6, 32.6, 93.9, 229.1];
+            const max = Math.max(...vals);
+            return vals[i] === max ? '#4ade80' : '#f1c40f';
+          }),
+          borderWidth: 1
+        }]
       },
-      options: { ...chartDefaults }
+      options: { ...base }
     });
 
-    new Chart(document.getElementById('kwChart'), {
+    // タイトル頻出ワード
+    new Chart(document.getElementById('titleWordsChart'), {
       type: 'bar',
       data: {
-        labels: ["副業 ライティング", "副業 初心者", "ChatGPT 副業", "note 稼ぐ", "note 有料記事"],
-        datasets: [{ data: [442.8, 445.0, 433.5, 199.8, 119.0], backgroundColor: 'rgba(100,181,246,0.7)', borderColor: '#64b5f6', borderWidth: 1 }]
+        labels: ["殿堂入り記事", "メンバーシップ", "AI活用", "毎日更新", "ライティング", "生成AI", "ChatGPT", "マーケティング", "フォロワー", "Claude", "在宅副業", "自己紹介", "フリーランス", "Gemini", "エッセイ"],
+        datasets: [{ data: [15, 13, 11, 10, 9, 9, 9, 8, 8, 8, 7, 7, 6, 6, 6], backgroundColor: 'rgba(100,181,246,0.7)', borderColor: '#64b5f6', borderWidth: 1 }]
       },
-      options: { ...chartDefaults, indexAxis: 'y' }
+      options: { ...base, indexAxis: 'y' }
+    });
+
+    // 価格帯件数分布
+    new Chart(document.getElementById('priceDistChart'), {
+      type: 'bar',
+      data: {
+        labels: ["〜100円", "101〜300円", "301〜500円", "501〜1000円", "1001円〜"],
+        datasets: [{ data: [72, 48, 18, 28, 76], backgroundColor: 'rgba(241,196,15,0.5)', borderColor: '#f1c40f', borderWidth: 1 }]
+      },
+      options: { ...base }
     });
   </script>
 </body>
